@@ -11,6 +11,10 @@ int main() {
   poly.blocks[2] = 0;
   poly.blocks[3] = 1;
 
+  show_gf2_poly(poly);
+  cout << "=> ";
+  show_gf2_poly(poly >> 191);
+
   return 0;
 }
 

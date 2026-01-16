@@ -10,7 +10,7 @@ using namespace std;
 256-bits GF2 polynome composed of 4 64bits blocks
 */
 typedef struct gf2_poly_256_t {
-  uint64_t blocks;
+  uint64_t blocks[4];
 } gf2_poly_256_t;
 
 /*
