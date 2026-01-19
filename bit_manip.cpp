@@ -19,8 +19,10 @@ int count_1bit(uint64_t n) {
 }
 
 int degree(uint64_t n) {
-  int deg;
-  for (deg = 0; n > 0; (n /= 2) && deg++)
-    ;
+  int deg=-1;
+  while(n > 0) {
+    deg++;
+    n>>=1;
+  }
   return deg;
 }

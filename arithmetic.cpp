@@ -1,6 +1,5 @@
 #include "arithmetic/arithmetic.hpp"
 #include "bit_manip/bit_manip.hpp"
-#include <cstdint>
 
 uint64_t poly_mul_naive(uint32_t P, uint32_t Q) {
   uint64_t mul = 0;
@@ -28,9 +27,19 @@ uint64_t poly_mul(uint32_t P, uint32_t Q) {
 }
 
 uint64_t poly_mod(uint64_t P, uint64_t Q) {
-  int dp, dq;
-  while ((dp = degree(P)) >= (dq = degree(Q))) {
+  int dp = degree(P), dq = degree(Q);
+  while ((dp = degree(P)) >= dq) {
     P ^= Q << (dp - dq);
+  }
+  return P;
+}
+
+uint64_t poly_gcd(uint64_t P, uint64_t Q) {
+  uint64_t R;
+  while (Q > 0) {
+    R = poly_mod(P, Q);
+    P = Q;
+    Q = R;
   }
   return P;
 }
