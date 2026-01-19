@@ -1,5 +1,36 @@
-#include "arithmetic/arithmetic.hpp"
-#include "bit_manip/bit_manip.hpp"
+#include "bit_manip.hpp"
+#include "arithmetic.hpp"
+
+// BITS MANIPULATIONS
+
+string binary(uint64_t n) {
+  string bin = "";
+  while (n > 0) {
+    bin += (n % 2) + 48;
+    n = n / 2;
+  }
+  return bin;
+}
+
+int count_1bit(uint64_t n) {
+  int c1 = 0;
+  while (n > 0) {
+    c1 += n % 2;
+    n = n >> 1;
+  }
+  return c1;
+}
+
+int degree(uint64_t n) {
+  int deg = -1;
+  while (n > 0) {
+    deg++;
+    n >>= 1;
+  }
+  return deg;
+}
+
+// POLYNOMIAL ARITHMETICS
 
 uint64_t poly_mul(uint32_t P, uint32_t Q) {
   uint64_t pol = 0;
