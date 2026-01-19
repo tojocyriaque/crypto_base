@@ -26,3 +26,11 @@ uint64_t poly_mul(uint32_t P, uint32_t Q) {
 
   return pol;
 }
+
+uint64_t poly_mod(uint64_t P, uint64_t Q) {
+  int dp, dq;
+  while ((dp = degree(P)) >= (dq = degree(Q))) {
+    P ^= Q << (dp - dq);
+  }
+  return P;
+}

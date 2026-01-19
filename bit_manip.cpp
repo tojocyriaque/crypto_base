@@ -1,6 +1,6 @@
 #include "bit_manip/bit_manip.hpp"
 
-string binary(int n) {
+string binary(uint64_t n) {
   string bin = "";
   while (n > 0) {
     bin += (n % 2) + 48;
@@ -9,7 +9,7 @@ string binary(int n) {
   return bin;
 }
 
-int count_1bit(int n) {
+int count_1bit(uint64_t n) {
   int c1 = 0;
   while (n > 0) {
     c1 += n % 2;
@@ -18,7 +18,7 @@ int count_1bit(int n) {
   return c1;
 }
 
-int degree(int n) {
+int degree(uint64_t n) {
   int deg;
   for (deg = 0; n > 0; (n /= 2) && deg++)
     ;
