@@ -1,5 +1,6 @@
-#include "bit_manip.hpp"
-#include "arithmetic.hpp"
+#include "64bits/arithmetic.hpp"
+#include "64bits/bit_manip.hpp"
+#include <cstdint>
 
 // BITS MANIPULATIONS
 
@@ -58,4 +59,15 @@ uint64_t poly_gcd(uint64_t P, uint64_t Q) {
     Q = R;
   }
   return P;
+}
+
+uint64_t poly_div(uint64_t P, uint64_t Q) {
+  int dp = degree(P), dq = degree(Q);
+  uint64_t quotient = 0;
+  while ((dp = degree(P)) >= dq) {
+    int shift = dp-dq;
+    P ^= Q << shift;
+    quotient ^= 1ULL << shift;
+  }
+  return quotient;
 }
