@@ -1,10 +1,8 @@
-#include <iostream>
-#include <cstdint>
 
+#include "64bits/facto.hpp"
+#include <iostream>
 using namespace std;
 
-string polynomial_exp(uint64_t P);
-void find_factorisation(uint64_t P);
 int main() {
   cout << "Décomposition en facteur irréductibles de P(x) = x⁵ + x⁴ + 1"
        << endl;

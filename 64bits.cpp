@@ -1,10 +1,10 @@
 #include "64bits/arithmetic.hpp"
 #include "64bits/bit_manip.hpp"
 #include "64bits/facto.hpp"
+#include <cstdint>
 #include <iostream>
 
 // BITS MANIPULATIONS
-
 string binary(uint64_t n) {
   string bin = "";
   while (n > 0) {
@@ -78,15 +78,17 @@ uint64_t poly_div(uint64_t P, uint64_t Q) {
 // FACTORISATIONS UTILS
 // Naive factorisations of P in GF(2)(X)
 void find_factorisation(uint64_t P) {
-  for (uint64_t Q = 1; Q < P; Q++) {
+  for (uint64_t Q = 2; Q < P; Q++) {
     uint64_t R = poly_mod(P, Q);
     if (R == 0) {
       uint64_t G = poly_div(P, Q);
-      cout << "(" << polynomial_exp(P) << ")" << " = (" << polynomial_exp(G)
-           << ")"
+      cout << "(" << polynomial_exp(P) << ") | " << binary(P) << " | " << P
+           << " = (" << polynomial_exp(G) << ")"
            << " * (" << polynomial_exp(Q) << ")"
            << " | " << "(" << binary(G) << ") * "
-           << "(" << binary(Q) << ") " << endl;
+           << "(" << binary(Q) << ") "
+           << " | " << "(" << G << ") * "
+           << "(" << Q << ") " << endl;
     }
   }
 }
