@@ -1,13 +1,15 @@
 #include "64bits/arithmetic.hpp"
 #include "64bits/bit_manip.hpp"
 #include "64bits/facto.hpp"
+#include <cstddef>
 #include <cstdint>
 #include <iostream>
 
 // BITS MANIPULATIONS
 string binary(uint64_t n) {
   string bin = "";
-  while (n > 0) {
+  size_t cnt = 0;
+  while (cnt++ < 64) {
     bin = "01"[n % 2] + bin;
     n >>= 1;
   }

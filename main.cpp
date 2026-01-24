@@ -1,14 +1,20 @@
-
-#include "64bits/facto.hpp"
+#include "gf2_poly_256/gf2_poly_256.h"
 #include <iostream>
+
+void show_gf2_poly(gf2_poly_256_t poly);
+
 using namespace std;
-
 int main() {
-  cout << "Décomposition en facteur irréductibles de P(x) = x⁵ + x⁴ + 1"
-       << endl;
+  gf2_poly_256_t poly;
+  poly.blocks[0] = 0;
+  poly.blocks[1] = 0;
+  poly.blocks[2] = 0;
+  poly.blocks[3] = 1;
 
-  uint64_t P = 49;
-  find_factorisation(P);
   return 0;
 }
 
+void show_gf2_poly(gf2_poly_256_t poly) {
+  for (auto block : poly.blocks)
+    cout << block << " ";
+}
