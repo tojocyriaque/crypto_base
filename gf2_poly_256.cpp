@@ -39,6 +39,7 @@ gf2_poly_256_t operator<<(gf2_poly_256_t _Poly, uint8_t _shift) {
     _Poly.blocks[0] = _sfi < 64 ? (_Poly.blocks[0] << 1) : 0;
 
     for (size_t _blk_i : {1, 2, 3}) {
+      // the first bit of the current block
       uint8_t _idx_f_bit_t = _Poly.blocks[_blk_i] >> 63;
       _Poly.blocks[_blk_i] = _sfi < 64 * (_blk_i + 1)
                                  ? (_Poly.blocks[_blk_i] << 1) ^ _idx_f_bit
@@ -51,6 +52,7 @@ gf2_poly_256_t operator<<(gf2_poly_256_t _Poly, uint8_t _shift) {
 
 gf2_poly_256_t operator>>(gf2_poly_256_t _Poly, uint8_t _shift) {
   for (size_t _sfi = 0; _sfi < _shift; _sfi++) {
+    // the last bit of the current block
     uint64_t _idx_l_bit = _Poly.blocks[3] & 1;
     _Poly.blocks[3] = _sfi < 64 ? (_Poly.blocks[3] >> 1) : 0;
 
