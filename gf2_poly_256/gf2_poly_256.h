@@ -8,9 +8,16 @@ using namespace std;
 /*
 256-bits GF2 polynome composed of 4 64bits blocks
 */
-typedef struct {
+struct gf2_poly_256_t {
   uint64_t blocks[4];
-} gf2_poly_256_t;
+
+  gf2_poly_256_t() : blocks{0, 0, 0, 0} {}
+
+  gf2_poly_256_t(uint64_t r) : blocks{r, 0, 0, 0} {}
+
+  gf2_poly_256_t(uint64_t a, uint64_t b, uint64_t c, uint64_t d)
+      : blocks{a, b, c, d} {}
+};
 
 /*
 Operator overloading for GF2 polynomial

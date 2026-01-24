@@ -2,6 +2,10 @@
 #include <string>
 
 /**
+Constructors
+*/
+
+/**
 @ binary string representation
 */
 string bin64(uint64_t n) {
@@ -48,7 +52,7 @@ gf2_poly_256_t operator<<(gf2_poly_256_t _Poly, uint8_t _shift) {
 gf2_poly_256_t operator>>(gf2_poly_256_t _Poly, uint8_t _shift) {
   for (size_t _sfi = 0; _sfi < _shift; _sfi++) {
     uint64_t _idx_l_bit = _Poly.blocks[3] & 1;
-    _Poly.blocks[3] = _sfi < 64 ? (_Poly.blocks[0] >> 1) : 0;
+    _Poly.blocks[3] = _sfi < 64 ? (_Poly.blocks[3] >> 1) : 0;
 
     for (size_t _blk_i : {2, 1, 0}) {
       uint64_t _idx_l_bit_t = _Poly.blocks[_blk_i] & 1;
