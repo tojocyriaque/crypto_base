@@ -45,6 +45,7 @@ gf2poly gf2poly_mul(gf2poly, gf2poly);
 gf2poly gf2poly_mod(gf2poly, gf2poly);
 gf2poly gf2poly_gcd(gf2poly, gf2poly);
 gf2poly gf2poly_div(gf2poly, gf2poly);
+gf2poly gf2poly_pow_mod(gf2poly a, uint64_t n, gf2poly m);
 
 /**
 Clean coding arithmetic operations

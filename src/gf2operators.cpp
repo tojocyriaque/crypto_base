@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
+#include <iostream>
 
 /*
 Operator overloading in GF2 polynoms
@@ -35,7 +36,11 @@ gf2poly operator>>(gf2poly _Poly, uint64_t _shift) {
     uint64_t _idx_l_bit = _Poly.blocks[nblock - 1] & 1;
     _Poly.blocks[nblock - 1] = _sfi < 64 ? (_Poly.blocks[nblock - 1] >> 1) : 0;
 
+    if (nblock < 2)
+      continue;
+
     for (size_t _blk_i = nblock - 2; _blk_i > 0; _blk_i--) {
+      cout << "size: " << nblock << " => index: " << _blk_i << endl;
       uint64_t _idx_l_bit_t = _Poly.blocks[_blk_i] & 1;
       _Poly.blocks[_blk_i] =
           _sfi < 64 * (nblock - _blk_i)
