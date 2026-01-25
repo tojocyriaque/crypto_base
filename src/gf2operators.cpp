@@ -83,3 +83,11 @@ bool operator==(gf2poly L, gf2poly R) {
     eq &= (L.blocks[_idx] == R.blocks[_idx]);
   return eq;
 }
+
+/**
+Clean coding arithmetic operations
+*/
+gf2poly operator*(gf2poly L, gf2poly R) { return gf2poly_mul(L, R); }
+gf2poly operator%(gf2poly L, gf2poly R) { return gf2poly_mod(L, R); }
+gf2poly operator%=(gf2poly L, gf2poly R) { return gf2poly_gcd(L, R); }
+gf2poly operator/(gf2poly L, gf2poly R) { return gf2poly_div(L, R); }

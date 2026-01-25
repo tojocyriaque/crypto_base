@@ -46,4 +46,12 @@ gf2poly gf2poly_mod(gf2poly, gf2poly);
 gf2poly gf2poly_gcd(gf2poly, gf2poly);
 gf2poly gf2poly_div(gf2poly, gf2poly);
 
+/**
+Clean coding arithmetic operations
+*/
+gf2poly operator*(gf2poly, gf2poly);
+gf2poly operator%(gf2poly, gf2poly);
+gf2poly operator%=(gf2poly, gf2poly); // GCD
+gf2poly operator/(gf2poly, gf2poly);
+
 #endif
