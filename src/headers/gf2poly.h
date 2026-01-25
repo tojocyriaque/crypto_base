@@ -31,6 +31,7 @@ gf2poly operator^(gf2poly, gf2poly);
 gf2poly operator&(gf2poly, gf2poly);
 bool operator==(gf2poly, gf2poly);
 
+void trim(gf2poly&);
 /* Binary representation */
 string bin64(uint64_t n);
 string gf2_bin(gf2poly);
@@ -45,7 +46,7 @@ gf2poly gf2poly_mul(gf2poly, gf2poly);
 gf2poly gf2poly_mod(gf2poly, gf2poly);
 gf2poly gf2poly_gcd(gf2poly, gf2poly);
 gf2poly gf2poly_div(gf2poly, gf2poly);
-gf2poly gf2poly_pow_mod(gf2poly a, uint64_t n, gf2poly m);
+gf2poly gf2poly_pow_mod(gf2poly a, gf2poly n, gf2poly m);
 
 /**
 Clean coding arithmetic operations

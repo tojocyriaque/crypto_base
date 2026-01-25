@@ -3,8 +3,12 @@
 #include <string>
 
 /**
-Constructors
+@ trim unecessary blocks
 */
+void trim(gf2poly &_P) {
+  while (_P.blocks.size() > 1 && _P.blocks.back() == 0)
+    _P.blocks.pop_back();
+}
 
 /**
 @ binary string representation

@@ -1,4 +1,5 @@
 #include "headers/gf2poly.h"
+
 /**
 Arithmetic operations
 */
@@ -10,6 +11,7 @@ gf2poly gf2poly_mul(gf2poly P, gf2poly Q) {
     if (!zero)
       _Pol = _Pol ^ (Q << k);
   }
+  trim(_Pol);
   return _Pol;
 }
 
@@ -18,6 +20,7 @@ gf2poly gf2poly_mod(gf2poly P, gf2poly Q) {
   while ((dp = degree(P)) >= dq)
     P = P ^ (Q << (dp - dq));
 
+  trim(P);
   return P;
 }
 
@@ -28,6 +31,7 @@ gf2poly gf2poly_gcd(gf2poly P, gf2poly Q) {
     P = Q;
     Q = R;
   }
+  trim(P);
   return P;
 }
 
@@ -39,17 +43,19 @@ gf2poly gf2poly_div(gf2poly P, gf2poly Q) {
     P = P ^ (Q << shift);
     quotient = quotient ^ (gf2poly(1) << shift);
   }
+  trim(quotient);
   return quotient;
 }
 
-gf2poly gf2poly_pow_mod(gf2poly a, uint64_t n, gf2poly m) {
-  gf2poly res(1);
-  a = a % m;
-  while (n > 0) {
-    if (n & 1)
-      res = (res * a) % m;
-    a = (a * a) % m;
-    n >>= 1;
+gf2poly gf2poly_pow_mod(gf2poly a, gf2poly n, gf2poly m) {
+  gf2poly res = 1, base = a % m;
+  while (!(n == gf2poly(0))) {
+    if ((n & 1) == 1)
+      res = (res * base) % m;
+
+    base = (base * base) % m;
+    n = n >> 1;
   }
+  trim(res);
   return res;
 }
