@@ -7,8 +7,7 @@ gf2poly gf2poly_mul(gf2poly P, gf2poly Q) {
   size_t dp = degree(P);
   gf2poly _Pol = 0;
   for (size_t k = 0; k <= dp; k++) {
-    auto zero = ((P >> k) & gf2poly(1)) == gf2poly(0);
-    if (!zero)
+    if (((P >> k) & 1) != 0)
       _Pol = _Pol ^ (Q << k);
   }
   trim(_Pol);
@@ -26,7 +25,7 @@ gf2poly gf2poly_mod(gf2poly P, gf2poly Q) {
 
 gf2poly gf2poly_gcd(gf2poly P, gf2poly Q) {
   gf2poly R = 0;
-  while (!(Q == gf2poly(0))) {
+  while (Q != 0) {
     R = gf2poly_mod(P, Q);
     P = Q;
     Q = R;
@@ -49,7 +48,7 @@ gf2poly gf2poly_div(gf2poly P, gf2poly Q) {
 
 gf2poly gf2poly_pow_mod(gf2poly a, gf2poly n, gf2poly m) {
   gf2poly res = 1, base = a % m;
-  while (!(n == gf2poly(0))) {
+  while (n != 0) {
     if ((n & 1) == 1)
       res = (res * base) % m;
 

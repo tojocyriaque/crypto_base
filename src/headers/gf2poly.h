@@ -30,6 +30,7 @@ gf2poly operator>>(gf2poly, uint64_t);
 gf2poly operator^(gf2poly, gf2poly);
 gf2poly operator&(gf2poly, gf2poly);
 bool operator==(gf2poly, gf2poly);
+bool operator!=(gf2poly, gf2poly);
 
 void trim(gf2poly&);
 /* Binary representation */

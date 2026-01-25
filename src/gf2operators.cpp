@@ -97,6 +97,7 @@ gf2poly operator&(gf2poly L, gf2poly R) {
 }
 
 bool operator==(gf2poly L, gf2poly R) { return L.blocks == R.blocks; }
+bool operator!=(gf2poly L, gf2poly R) { return L.blocks != R.blocks; }
 
 /**
 Clean coding arithmetic operations
