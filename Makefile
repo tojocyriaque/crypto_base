@@ -1,4 +1,4 @@
-src= *.cpp
+src= src/*.cpp
 bin = bin/main
 flags = -Wall -Wextra
 

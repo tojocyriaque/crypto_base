@@ -1,6 +1,6 @@
-#include "64bits/arithmetic.hpp"
-#include "64bits/bit_manip.hpp"
-#include "64bits/facto.hpp"
+#include "headers/64bits/arithmetic.hpp"
+#include "headers/64bits/bit_manip.hpp"
+#include "headers/64bits/facto.hpp"
 #include <cstddef>
 #include <cstdint>
 #include <iostream>
@@ -36,7 +36,7 @@ int degree(uint64_t n) {
 
 // POLYNOMIAL ARITHMETICS
 
-uint64_t poly_mul(uint32_t P, uint32_t Q) {
+uint64_t gf2poly_mul(uint32_t P, uint32_t Q) {
   uint64_t pol = 0;
   int deg_P = degree(P);
   for (int i = 0; i <= deg_P; i++)
@@ -46,7 +46,7 @@ uint64_t poly_mul(uint32_t P, uint32_t Q) {
   return pol;
 }
 
-uint64_t poly_mod(uint64_t P, uint64_t Q) {
+uint64_t gf2poly_mod(uint64_t P, uint64_t Q) {
   int dp = degree(P), dq = degree(Q);
   while ((dp = degree(P)) >= dq) {
     P ^= Q << (dp - dq);
@@ -54,19 +54,17 @@ uint64_t poly_mod(uint64_t P, uint64_t Q) {
   return P;
 }
 
-uint64_t poly_gcd(uint64_t P, uint64_t Q) {
+uint64_t gf2poly_gcd(uint64_t P, uint64_t Q) {
   uint64_t R;
   while (Q > 0) {
-    R = poly_mod(P, Q);
+    R = gf2poly_mod(P, Q);
     P = Q;
     Q = R;
   }
   return P;
 }
-// END ARITHMETICS
-// --------------------------------------------------------------
 
-uint64_t poly_div(uint64_t P, uint64_t Q) {
+uint64_t gf2poly_div(uint64_t P, uint64_t Q) {
   int dp = degree(P), dq = degree(Q);
   uint64_t quotient = 0;
   while ((dp = degree(P)) >= dq) {
@@ -76,14 +74,17 @@ uint64_t poly_div(uint64_t P, uint64_t Q) {
   }
   return quotient;
 }
+// END ARITHMETICS
+// --------------------------------------------------------------
+
 
 // FACTORISATIONS UTILS
 // Naive factorisations of P in GF(2)(X)
 void find_factorisation(uint64_t P) {
   for (uint64_t Q = 2; Q < P; Q++) {
-    uint64_t R = poly_mod(P, Q);
+    uint64_t R = gf2poly_mod(P, Q);
     if (R == 0) {
-      uint64_t G = poly_div(P, Q);
+      uint64_t G = gf2poly_div(P, Q);
       cout << "(" << polynomial_exp(P) << ") | " << binary(P) << " | " << P
            << " = (" << polynomial_exp(G) << ")"
            << " * (" << polynomial_exp(Q) << ")"
