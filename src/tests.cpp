@@ -1,5 +1,8 @@
 #include "headers/gf2poly.h"
+#include <algorithm>
+#include <cmath>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -99,15 +102,17 @@ void test_crypto_grade() {
 }
 
 int main() {
-  // test_regression();
-  // test_boundary();
-  // test_pow_mod();
-  // test_frobenius_large();
-  // test_large_modulo();
-  // test_crypto_grade();
+  test_regression();
+  test_boundary();
+  test_pow_mod();
+  test_frobenius_large();
+  test_large_modulo();
+  test_crypto_grade();
+  // gf2poly gfp1 = 255;
+  // gf2poly gfp2 = 52;
+  // gf2poly gfp3 = gfp1 & gfp2;
 
-  gf2poly gfp = gf2poly(1) << 192;
-  cout << degree(gfp) << endl;
-  cout << degree(gfp >> 65) << endl;
+  // for(auto b: gfp3.blocks)
+  //   cout << b << " ";
   return 0;
 }
