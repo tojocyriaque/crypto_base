@@ -79,7 +79,7 @@ bool operator==(gf2poly L, gf2poly R) {
   L.blocks.resize(nblock);
   R.blocks.resize(nblock);
   bool eq = true;
-  for (size_t _idx = 0; _idx < nblock - 1; _idx++)
+  for (size_t _idx = 0; _idx < nblock; _idx++)
     eq &= (L.blocks[_idx] == R.blocks[_idx]);
   return eq;
 }
