@@ -108,11 +108,5 @@ int main() {
   test_frobenius_large();
   test_large_modulo();
   test_crypto_grade();
-  // gf2poly gfp1 = 255;
-  // gf2poly gfp2 = 52;
-  // gf2poly gfp3 = gfp1 & gfp2;
-
-  // for(auto b: gfp3.blocks)
-  //   cout << b << " ";
   return 0;
 }
